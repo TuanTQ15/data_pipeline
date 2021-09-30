@@ -57,21 +57,8 @@ class Config:
             "https://thanhnien.vn/rss/du-lich.rss",
             "https://xe.thanhnien.vn/rss/home.rss",
             "https://thanhnien.vn/rss/cong-nghe.rss"
-        ],
-        "zing": [
-            "https://news.zing.vn/rss/thoi-su.rss",
-            "https://news.zing.vn/rss/kinh-doanh-tai-chinh.rss",
-            "https://news.zing.vn/rss/giai-tri.rss",
-            "https://news.zing.vn/rss/the-thao.rss",
-            "https://news.zing.vn/rss/phap-luat.rss",
-            "https://news.zing.vn/rss/giao-duc.rss",
-            "https://news.zing.vn/rss/suc-khoe.rss",
-            "https://news.zing.vn/rss/song-tre.rss",
-            "https://news.zing.vn/rss/du-lich.rss",
-            "https://news.zing.vn/rss/oto-xe-may.rss",
-            "https://news.zing.vn/rss/cong-nghe.rss"
-        ],
-        
+        ],     
+    
     }
 
     BOOTSTRAP_SERVERS = ["kafka:9092"]

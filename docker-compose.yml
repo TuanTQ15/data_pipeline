@@ -60,7 +60,37 @@ services:
             - SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL=${SCHEMA_REGISTRY_LOGLEVEL}
         depends_on:
             - kafka  
+    redis:
+        container_name: redis
+        image: redis:alpine
+        command: ["redis-server"]
+        ports:
+            - 6379:6379
+        volumes:
+            - ./redis:/usr/local/etc/redis
+    
+    elasticsearch:
+        container_name: elasticsearch
+        build: ./elastic
+        restart: unless-stopped
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        ports:
+            - 9200:9200
 
+    mongo:
+        container_name: mongo
+        image: mongo:4.2
+        command: ["mongod", "--replSet", "rs0", "--auth"]
+        environment: 
+            - MONGO_ADMIN=${MONGO_ADMIN}
+            - RSS_NEWS_USER=${RSS_NEWS}
+        ports:
+            - 27017:27017
+        volumes:
+            - ./mongo/init.sh:/usr/local/bin/init.sh
     
 networks: 
     default:
