@@ -8,12 +8,10 @@ Software required to run the project. Install:
 - [docker-compose](https://docs.docker.com/compose/install/)
 <!-- RUNNING PROJECT -->
 ## Running project
-Script `manage.sh` - wrapper for `docker-compose` works as a managing tool.
+- Build project: `docker-compose up`
 
-- Build project: docker-compose up
+- Stop project: `docker-compose stop`
 
-- Stop project: docker-compose stop
-
-- Delete project: docker-compose down
-- Delete volume: docker volume rm $(docker volume ls -q)
-- Delete all image: docker image rm -f $(docker image ls -q)
+- Delete project: `docker-compose down`
+- Delete volume: `docker volume rm $(docker volume ls -q)`
+- Delete all image: `docker image rm -f $(docker image ls -q)`
