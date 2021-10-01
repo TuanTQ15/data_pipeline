@@ -14,8 +14,8 @@ class RetryOnException:
             self.logger.info(f"Retries: {self._retries}")
             while self._retries != 0:
                 try:
+                    
                     return function(*args, **kwargs)
-                    self._retries = 0
                 except Exception as err:
                     self.logger.info(f"Error occured: {err}")
                     self._retries -= 1

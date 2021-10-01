@@ -12,16 +12,16 @@ class News:
     published: str
     description: str
     author: str
-    language: str
+    source: str
     
     def as_dict(self):
         return self.__dict__
 
 
 class NewsProducer:
-    def __init__(self, rss_feed, language):
+    def __init__(self, rss_feed, source):
         self.parser = WebParser(rss_feed, rotate_header=True)
-        self.formatter = NewsFormatter(language)
+        self.formatter = NewsFormatter(source)
 
     def _extract_news_feed_items(self, proxies):
         content = self.parser.get_content(proxies=proxies)
@@ -36,8 +36,8 @@ class NewsProducer:
 
 
 class NewsFormatter:
-    def __init__(self, language):
-        self.language = language
+    def __init__(self, source):
+        self.source = source
         self.date_format = "%Y-%m-%d %H:%M:%S"
         self.id_regex = "[^0-9a-zA-Z_-]+"
         self.default_author = "Unknown"
@@ -51,7 +51,7 @@ class NewsFormatter:
             self.unify_date(entry.pub_date),
             description,
             self.assign_author(entry.author),
-            self.language
+            self.source
         )
 
     def construct_id(self, title):

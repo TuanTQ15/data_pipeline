@@ -19,13 +19,13 @@ def dummy_callable(action):
     return f"{datetime.now()}: {action} scrapping RSS feeds!"
 
 
-def export_events(config, rss_feed, language, dag):
+def export_events(config, rss_feed, source, dag):
     feed_name = extract_feed_name(rss_feed)
     return RSSNewsOperator(
         task_id=f"exporting_{feed_name}_news_to_broker",
         validator_config=config.VALIDATOR_CONFIG,
         rss_feed=rss_feed,
-        language=language,
+        source=source,
         redis_config=config.REDIS_CONFIG,
         redis_key=config.REDIS_KEY,
         bootstrap_servers=config.BOOTSTRAP_SERVERS,
@@ -34,10 +34,10 @@ def export_events(config, rss_feed, language, dag):
     )
 
 
-def create_dag(dag_id, interval, config, language, rss_feeds):
+def create_dag(dag_id, interval, config, source, rss_feeds):
     with DAG(
         dag_id=dag_id,
-        description=f"Scrape latest ({language}) sport RSS feeds",
+        description=f"Scrape latest ({source}) sport RSS feeds",
         schedule_interval=interval,
         start_date=datetime(2020, 1, 1),
         catchup=False,
@@ -63,7 +63,7 @@ def create_dag(dag_id, interval, config, language, rss_feeds):
         )
 
         events = [
-            export_events(config, rss_feed, language, dag)
+            export_events(config, rss_feed, source, dag)
             for rss_feed in rss_feeds
         ]
 
@@ -80,14 +80,14 @@ def create_dag(dag_id, interval, config, language, rss_feeds):
 
 
 for n, item in enumerate(config.RSS_FEEDS.items()):
-    language, rss_feeds = item
-    dag_id = f"rss_news_{language}"
+    source, rss_feeds = item
+    dag_id = f"rss_news_{source}"
     interval = f"{n*4}-59/10 * * * *"
 
     globals()[dag_id] = create_dag(
         dag_id,
         interval,
         config,
-        language,
+        source,
         rss_feeds
     )
