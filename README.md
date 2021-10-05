@@ -8,6 +8,7 @@ Software required to run the project. Install:
 - [docker-compose](https://docs.docker.com/compose/install/)
 <!-- RUNNING PROJECT -->
 ## Running project
+*Note: if your machine's operating system is windows then you can use git bash to run the command
 - Build project: `docker-compose up`
 
 - Stop project: `docker-compose stop`
@@ -15,4 +16,3 @@ Software required to run the project. Install:
 - Delete project: `docker-compose down`
 - Delete volume: `docker volume rm $(docker volume ls -q)`
 - Delete all image: `docker image rm -f $(docker image ls -q)`
-- Note: if your machine's operating system is windows then you can use git bash to run the command
