@@ -85,7 +85,8 @@ services:
         depends_on:
             - kafka
             - schema-registry
-           
+            - api
+            - minio
 
     elasticsearch:
         container_name: elasticsearch
@@ -110,6 +111,44 @@ services:
         volumes:
             - ./mongo/init.sh:/usr/local/bin/init.sh
         
+    api:
+        container_name: api
+        build: ./api
+        restart: unless-stopped
+        environment:
+            - ELASTIC_HOST=${ELASTIC_HOST}
+            - ELASTIC_INDEX=${ELASTIC_INDEX}
+            - MONGO_HOST=${MONGO_HOST}
+            - MONGO_USR=${RSS_NEWS}
+            - MONGO_PASSWD=${RSS_NEWS}
+            - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+        volumes:
+            - ./api/app:/app
+            - static_data:/app/static
+        depends_on:
+            - mongo
+            - elasticsearch
+    
+    proxy:
+        container_name: proxy
+        build: ./api/proxy
+        ports: 
+            - 5000:5000
+        volumes: 
+            - static_data:/vol/static
+        depends_on: 
+            - api
+
+    minio:
+        container_name: minio
+        build: ./minio
+        ports:
+            - 9000:9000
+        environment:
+            - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+            - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+            - DEFAULT_BUCKET=${MINIO_DEFAULT_BUCKET}
+
 networks: 
     default:
         name: backend-net
