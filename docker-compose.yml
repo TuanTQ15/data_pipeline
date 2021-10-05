@@ -33,6 +33,7 @@ services:
             retries: 3
         depends_on:
             - postgres
+
     zookeeper:
         container_name: zookeeper
         image: confluentinc/cp-zookeeper:5.3.1
@@ -60,6 +61,7 @@ services:
             - SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL=${SCHEMA_REGISTRY_LOGLEVEL}
         depends_on:
             - kafka  
+
     redis:
         container_name: redis
         image: redis:alpine
@@ -68,6 +70,7 @@ services:
             - 6379:6379
         volumes:
             - ./redis:/usr/local/etc/redis
+
     connect:
         container_name: connect
         build: ./connect
@@ -82,6 +85,8 @@ services:
         depends_on:
             - kafka
             - schema-registry
+           
+
     elasticsearch:
         container_name: elasticsearch
         build: ./elastic
@@ -104,9 +109,7 @@ services:
             - 27017:27017
         volumes:
             - ./mongo/init.sh:/usr/local/bin/init.sh
-    
-            
-    
+        
 networks: 
     default:
         name: backend-net

@@ -16,3 +16,4 @@ Software required to run the project. Install:
 - Delete project: `docker-compose down`
 - Delete volume: `docker volume rm $(docker volume ls -q)`
 - Delete all image: `docker image rm -f $(docker image ls -q)`
+- Delete all container: `docker rm -f $(docker ps -a -q)`
