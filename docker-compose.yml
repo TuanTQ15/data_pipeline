@@ -68,7 +68,20 @@ services:
             - 6379:6379
         volumes:
             - ./redis:/usr/local/etc/redis
-    
+    connect:
+        container_name: connect
+        build: ./connect
+        environment:
+            - CONNECT_REST_ADVERTISED_HOST_NAME=${CONNECT_REST_ADVERTISED_HOST_NAME}
+            - CONNECT_SCHEMA_REGISTRY_URL=${SCHEMA_REGISTRY_URL}
+            - CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL=${SCHEMA_REGISTRY_URL}
+            - CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=${SCHEMA_REGISTRY_URL}
+            - CONNECT_BOOTSTRAP_SERVERS=${CONNECT_BOOTSTRAP_SERVERS} 
+        ports:
+            - 8083:8083
+        depends_on:
+            - kafka
+            - schema-registry
     elasticsearch:
         container_name: elasticsearch
         build: ./elastic
@@ -91,20 +104,7 @@ services:
             - 27017:27017
         volumes:
             - ./mongo/init.sh:/usr/local/bin/init.sh
-    connect:
-        container_name: connect
-        build: ./connect
-        environment:
-            - CONNECT_REST_ADVERTISED_HOST_NAME=${CONNECT_REST_ADVERTISED_HOST_NAME}
-            - CONNECT_SCHEMA_REGISTRY_URL=${SCHEMA_REGISTRY_URL}
-            - CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL=${SCHEMA_REGISTRY_URL}
-            - CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=${SCHEMA_REGISTRY_URL}
-            - CONNECT_BOOTSTRAP_SERVERS=${CONNECT_BOOTSTRAP_SERVERS} 
-        ports:
-            - 8083:8083
-        depends_on:
-            - kafka
-            - schema-registry
+    
             
     
 networks: 
