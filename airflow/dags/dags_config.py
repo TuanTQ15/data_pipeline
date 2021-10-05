@@ -46,17 +46,17 @@ class Config:
             "https://tuoitre.vn/rss/nhip-song-so.rss"
         ],
         "thanhnien": [
-            "https://thanhnien.vn/rss/thoi-su.rss",
-            "https://thanhnien.vn/rss/tai-chinh-kinh-doanh.rss",
-            "https://thanhnien.vn/rss/giai-tri.rss",
-            "https://thanhnien.vn/the-thao/bong-da-viet-nam.rss",
-            "https://thanhnien.vn/rss/thoi-su/phap-luat.rss",
-            "https://thanhnien.vn/rss/giao-duc.rss",
-            "https://thanhnien.vn/rss/suc-khoe.rss",
-            "https://thanhnien.vn/rss/doi-song.rss",
-            "https://thanhnien.vn/rss/du-lich.rss",
-            "https://xe.thanhnien.vn/rss/home.rss",
-            "https://thanhnien.vn/rss/cong-nghe.rss"
+            "https://thanhnien.vn/rss/thoi-su-4.rss",
+            "https://thanhnien.vn/rss/tai-chinh-kinh-doanh-49.rss",
+            "https://thanhnien.vn/rss/giai-tri-285.rss",
+            "https://thanhnien.vn/rss/the-thao/bong-da-viet-nam-375.rss",
+            "https://thanhnien.vn/rss/thoi-su/phap-luat-5.rss",
+            "https://thanhnien.vn/rss/giao-duc-26.rss",
+            "https://thanhnien.vn/rss/suc-khoe-65.rss",
+            "https://thanhnien.vn/rss/doi-song-17.rss",
+            "https://thanhnien.vn/rss/du-lich-234.rss",
+            "https://thanhnien.vn/rss/xe-317.rss",
+            "https://thanhnien.vn/rss/cong-nghe-12.rss"
         ],     
     
     }
