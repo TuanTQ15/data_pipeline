@@ -2,7 +2,7 @@
 <!-- PREREQUISITES -->
 ## Prerequisites
 Software required to run the project. Install:
-- Windows or Ubuntu 20.04
+- Ubuntu 20.04
 - [Docker](https://docs.docker.com/get-docker/)
 - [Python 3.8+ (pip)](https://www.python.org/)
 - [docker-compose](https://docs.docker.com/compose/install/)
