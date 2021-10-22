@@ -11,12 +11,16 @@ echo "Initiated replica set"
 sleep 5
 
 mongo localhost:27017/${MONGO_ADMIN}  <<-EOF
+    
     db.createUser({ 
         user: "${MONGO_ADMIN}", 
         pwd: "${MONGO_ADMIN}", 
         roles: [ { role: "userAdminAnyDatabase", db: "${MONGO_ADMIN}" } ] 
     });
+    db.auth("${MONGO_ADMIN}","${MONGO_ADMIN}")
+    
     db.grantRolesToUser("${MONGO_ADMIN}", ["clusterManager"]);
+    
 EOF
 
 mongo -u ${MONGO_ADMIN} -p ${MONGO_ADMIN} localhost:27017/${MONGO_ADMIN} <<-EOF
@@ -39,4 +43,11 @@ mongo -u ${MONGO_ADMIN} -p ${MONGO_ADMIN} localhost:27017/${MONGO_ADMIN} <<-EOF
             { role: "read", db: "${MONGO_ADMIN}" }
         ]
     });
+    use rss_news
+    db.createCollection("user")  
+EOF
+
+mongo mongodb://rss_news:rss_news@localhost:27017 <<-EOF
+  use rss_news
+  db.createCollection("user")  
 EOF
