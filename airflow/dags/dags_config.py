@@ -1,5 +1,3 @@
-
-
 class Config:
 
     PROXY_WEBPAGE = "https://free-proxy-list.net/"

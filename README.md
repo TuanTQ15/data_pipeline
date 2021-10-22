@@ -9,8 +9,10 @@ Software required to run the project. Install:
 <!-- RUNNING PROJECT -->
 ## Running project
 *Note: if your machine's operating system is windows then you can use git bash to run the command
-- Build project: `docker-compose up`
-
+- Build project: 
+        + `docker-compose up -d mongo`
+        + `docker exec -it mongo /usr/local/bin/init.sh`
+        + `docker-compose up -d`
 - Stop project: `docker-compose stop`
 
 - Delete project: `docker-compose down`
