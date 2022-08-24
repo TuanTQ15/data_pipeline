@@ -59,6 +59,7 @@ class Config:
     
     }
 
+    
     BOOTSTRAP_SERVERS = ["kafka:9092"]
 
     TOPIC = "rss_news"
