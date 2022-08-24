@@ -47,6 +47,7 @@ mongo -u ${MONGO_ADMIN} -p ${MONGO_ADMIN} localhost:27017/${MONGO_ADMIN} <<-EOF
     db.createCollection("user")  
 EOF
 
+
 mongo mongodb://rss_news:rss_news@localhost:27017 <<-EOF
   use rss_news
   db.createCollection("user")  
